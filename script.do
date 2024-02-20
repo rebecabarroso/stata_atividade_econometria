@@ -36,12 +36,11 @@ reg analf gini dens idhm ensino_medio renda renda2
 
 * Teste de Normalidade dos resíduos *
 predict uhat1, resid
-histogram uhat1, normal
+histogram uhat1, normal name("grafico1")
 
 * Análise gráfica dos resíduos *
 gen lnanalf=ln(analf)
-scatter uhat1 lnanalf
-scatter uhat1 lnanalf, yline(0)
+scatter uhat1 lnanalf, yline(0) name("grafico2")
 
 * criando uma variavel logaritmica *
 
@@ -81,11 +80,11 @@ xttest0
 
 
 ***** análise gráfica com duas variáveis ****
-twoway fpfitci analf renda || scatter analf renda
-twoway (scatter analf renda, mcolor(black)) (scatter analf renda if mun=="Maceió (AL)", mlabel(mun)),graphregion(color(white)) plotregion(color(white))
+twoway fpfitci analf renda || scatter analf renda, name("grafico3")
+twoway (scatter analf renda, mcolor(black)) (scatter analf renda if mun=="Maceió (AL)", mlabel(mun)),graphregion(color(white)) plotregion(color(white)) name("grafico4")
 
 
 **** Criando gráfico box-plot para as variáveis *********
-graph box analf ensino_medio 
+graph box analf ensino_medio, name("grafico5")
 gen lnrenda=ln(renda)
-graph box analf gini dens idhm ensino_medio lnrenda
+graph box analf gini dens idhm ensino_medio lnrenda, name("grafico6")
